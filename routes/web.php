@@ -14,11 +14,27 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('dashboard', function () {return view('admin.index');});
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/login', 'UserController@index');
+Route::post('/login', [
+    'uses'=>'UserController@LoginUser',
+    'as'=>'login'
+] );
+Route::get('/logout', 'UserController@logout');
+
+
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
+    Route::get('dashboard', 'DashboardController@index');
 
     Route::get('teacher', 'TeacherController@index');
     Route::post('teacher', [
@@ -45,8 +61,18 @@ Route::group(['prefix' => 'admin'], function () {
     ]);
     Route::get('student/{id}', 'StudentController@edit');
 
-    Route::get('class', function () {return view('admin.class');});
-    Route::get('class-enter', function () {return view('admin.class-enter');});
+    Route::get('class', 'InstituteClassController@index');
+    Route::post('class', [
+        'uses'=>'InstituteClassController@store',
+        'as'=>'class-register'
+    ]);
+    
+    Route::post('class/{id}', [
+        'uses'=>'InstituteClassController@update',
+        'as'=>'class-update'
+    ]);
+    Route::get('class-enter', 'InstituteClassController@create');
+    Route::get('class/{id}', 'InstituteClassController@edit');
 
     Route::get('payment', function () {return view('admin.payment');});
 });

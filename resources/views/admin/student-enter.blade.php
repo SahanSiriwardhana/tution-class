@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title','Student Enter Form')
     @section('content')
 
         <!-- Page Heading -->
@@ -49,21 +50,33 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                        <label for="email">Email :</label>
-                        <input type="email" required class="form-control form-control-user" id="exampleInputPassword" placeholder="Email" value="{{ old('email') }}" name="email">
-                        @if($errors->has('email'))
-                        <div style="color:red">{{ $errors->first('email') }}</div>
-                        @endif
+                        <div class="col-sm-4 mb-3 mb-sm-0">
+                            <label for="email">Email :</label>
+                            <input type="email" required class="form-control form-control-user" id="exampleInputPassword" placeholder="Email" value="{{ old('email') }}" name="email">
+                            @if($errors->has('email'))
+                            <div style="color:red">{{ $errors->first('email') }}</div>
+                            @endif
                         </div>
-                        <div class=" col-sm-6">
-                        <label for="email">Contact Number:</label>
-                        <input type="number" required class="form-control form-control-user" id="exampleRepeatPassword" placeholder="071xxxxxxx" name="contactNo" value="{{ old('contactNo') }}">
-                        @if($errors->has('contactNo'))
-                            <div style="color:red">{{ $errors->first('contactNo') }}</div>
-                        @endif
-                        
-                    </div>
+                        <div class=" col-sm-4">
+                            <label for="email">Contact Number:</label>
+                            <input type="number" required class="form-control form-control-user" id="exampleRepeatPassword" placeholder="071xxxxxxx" name="contactNo" value="{{ old('contactNo') }}">
+                            @if($errors->has('contactNo'))
+                                <div style="color:red">{{ $errors->first('contactNo') }}</div>
+                            @endif
+                        </div>
+                        <div class=" col-sm-4">
+                            <label for="email">Grade :</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="grade" value="{{ old('contactNo') }}">
+                                @for ($i = 0; $i < 13; $i++)
+                                <option value={{$i+1}}>{{"Grade ".($i+1)}}</option>
+                                @endfor
+                                
+                                
+                            </select>
+                            @if($errors->has('contactNo'))
+                                <div style="color:red">{{ $errors->first('contactNo') }}</div>
+                            @endif
+                        </div>
                     </div>
                     <hr/>
                     <div class="form-group row">
@@ -124,20 +137,37 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
+                        <div class="col-sm-4 mb-3 mb-sm-0">
                         <label for="email">Email :</label>
                         <input type="email" required class="form-control form-control-user" id="exampleInputPassword" placeholder="Email" value="{{$data['student']->email}}" name="email">
                         @if($errors->has('email'))
                         <div style="color:red">{{ $errors->first('email') }}</div>
                         @endif
                         </div>
-                        <div class=" col-sm-6">
+                        <div class=" col-sm-4">
                         <label for="email">Contact Number:</label>
                         <input type="number" required class="form-control form-control-user" id="exampleRepeatPassword" placeholder="071xxxxxxx" name="contactNo" value="{{$data['student']->contact_no}}">
                         @if($errors->has('contactNo'))
                             <div style="color:red">{{ $errors->first('contactNo') }}</div>
                         @endif
                         <input type="hidden" name="teacherID" value="{{$data['student']->id}}">
+                        </div>
+                        <div class=" col-sm-4">
+                            <label for="email">Grade :</label>
+                            <select class="form-control" id="exampleFormControlSelect1" name="grade" value="{{$data['student']->grade}}">
+                                @for ($i = 0; $i < 13; $i++)
+                                <option value={{$i+1}} 
+                                @if ($data['student']->grade==($i+1))
+                                selected
+                                @endif
+                                >{{"Grade ".($i+1)}}</option>
+                                @endfor
+                                
+                                
+                            </select>
+                            @if($errors->has('contactNo'))
+                                <div style="color:red">{{ $errors->first('contactNo') }}</div>
+                            @endif
                         </div>
                     </div>
                     <hr/>

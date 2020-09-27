@@ -90,6 +90,7 @@ class StudentController extends Controller
                     'first_name' => $request->input('firstName'),
                     'last_name' => $request->input('lastName'),
                     'email' => $request->input('email'),
+                    'grade' => $request->input('grade'),
                     'userID' => $user->id,
                     'contact_no' => $request->input('contactNo'),
                 ]);
@@ -159,6 +160,7 @@ class StudentController extends Controller
             $student->first_name = $request->input('firstName');
             $student->last_name = $request->input('lastName');
             $student->email = $request->input('email');
+            $student->grade = $request->input('grade');
             $student->contact_no = $request->input('contactNo');
            // $teacher->save();
             
