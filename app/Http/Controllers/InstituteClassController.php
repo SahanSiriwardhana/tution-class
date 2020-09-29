@@ -106,7 +106,9 @@ class InstituteClassController extends Controller
         //
         $id = $request->id;
         $instituteClass = InstituteClass::find($id);
+        $teacherList = Teacher::all();
         $data =array(
+            'teacherList' => $teacherList,
             'instituteClass'=>$instituteClass,
             'hasID' => true
         );
@@ -120,9 +122,42 @@ class InstituteClassController extends Controller
      * @param  \App\InstituteClass  $instituteClass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InstituteClass $instituteClass)
+    public function update(Request $request,  $id)
     {
         //
+        $validation = Validator::make($request->all(),[
+            'yearForExam'=>'required|digits:4',
+            'startTime'=>'required',
+            'endTime'=>'required',
+            'classFee'=>'required',
+        ]);;
+
+        if ($validation->fails()) {
+            return Redirect::back()->withErrors($validation)->withInput();
+        }else{
+
+            $instituteClass = InstituteClass::find($id);
+
+            $instituteClass->class_name = $request->input('className');
+            $instituteClass->scheme = $request->input('grade');
+            $instituteClass->year_for_examination = $request->input('yearForExam');
+            $instituteClass->subject = $request->input('subject');
+            $instituteClass->date = $request->input('day');
+            $instituteClass->start_time = $request->input('startTime');
+            $instituteClass->end_time = $request->input('endTime');
+            $instituteClass->fee = $request->input('classFee');
+            $instituteClass->teacherID = $request->input('teacher');
+            $instituteClass->status = 1;
+            
+
+            $result = $instituteClass->save();
+
+            if($result)
+            {
+                return Redirect::back()->with('successMsg', 'Class edit successful..!');;
+                
+            }
+        }
     }
 
     /**
@@ -134,5 +169,8 @@ class InstituteClassController extends Controller
     public function destroy(InstituteClass $instituteClass)
     {
         //
+        $instituteClass = InstituteClass::find($id);
+        $instituteClass->delete();
+        return Redirect::to('admin/class')->with('successMsg', 'Class delete successful..!');
     }
 }

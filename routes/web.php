@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('dashboard', 'DashboardController@index');
 
     Route::get('teacher', 'TeacherController@index');
+    Route::get('teacher-dashboard', 'TeacherController@indexDashboard');
     Route::post('teacher', [
         'uses'=>'TeacherController@store',
         'as'=>'teacher-register'
@@ -50,6 +51,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('teacher-enter', 'TeacherController@create');
 
     Route::get('student','StudentController@index' );
+    Route::get('student-dashboard', 'StudentController@indexDashboard');
     Route::get('student-enter','StudentController@create');
     Route::post('student', [
         'uses'=>'StudentController@store',
@@ -60,6 +62,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'=>'student-update'
     ]);
     Route::get('student/{id}', 'StudentController@edit');
+    Route::get('student-delete/{id}', 'StudentController@destroy');
 
     Route::get('class', 'InstituteClassController@index');
     Route::post('class', [
@@ -73,6 +76,25 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     ]);
     Route::get('class-enter', 'InstituteClassController@create');
     Route::get('class/{id}', 'InstituteClassController@edit');
+    Route::get('class-delete/{id}', 'InstituteClassController@destroy');
 
-    Route::get('payment', function () {return view('admin.payment');});
+    
+    Route::get('enrollment', 'ClassStudentController@index');
+    Route::post('class-enrollment', [
+        'uses'=>'ClassStudentController@store',
+        'as'=>'class-enrollment'
+    ]);
+    
+    Route::post('class/{id}', [
+        'uses'=>'InstituteClassController@update',
+        'as'=>'class-update'
+    ]);
+
+    Route::get('payment', 'ClassPaymentController@index');
+
 });
+
+Route::post('class', [
+    'uses'=>'ClassStudentController@getAutoCompleteClass',
+    'as'=>'class-search'
+]);

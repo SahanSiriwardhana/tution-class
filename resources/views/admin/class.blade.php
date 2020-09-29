@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title','Class List')
 @section('content')
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -43,7 +44,7 @@
                           </a>
                         </div>
                         <div class="col-auto">
-                          <a href="#" class="btn btn-danger btn-icon-split">
+                          <a href="/admin/class-delete/{{$item->id}}" class="btn btn-danger btn-icon-split">
                             <span class="icon text-white-50">
                               <i class="fas fa-trash"></i>
                             </span>

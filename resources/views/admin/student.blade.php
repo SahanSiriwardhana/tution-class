@@ -51,7 +51,7 @@
                       <th>{{$item->contact_no}}</th>
                       <th>
                         <a href="/admin/student/{{$item->id}}"> <i class="fas fa-edit"></i></a>
-                        <a href="/admin/teacher-delete/{{$item->id}}" style="color:red"> <i class="fas fa-trash-alt"></i></a>
+                        <a href="/admin/student-delete/{{$item->id}}" style="color:red"> <i class="fas fa-trash-alt"></i></a>
                       </th>
                     </tr>
                   @endforeach

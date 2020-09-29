@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title','Class Enter Form')
     @section('content')
 
         <!-- Page Heading -->
@@ -139,20 +140,20 @@
                             <div class=" col-sm-4">
                                 <label for="email">Scheme :</label>
                                 <select class="form-control" id="grade" name="grade" value="{{ old('grade') }}">
-                                    <option value="A/L">A/L</option>
-                                    <option value="A/L">O/L</option>
+                                    <option value="A/L" @if ($data['instituteClass']->scheme == "A/L"){ selected }  @endif>A/L</option>
+                                    <option value="O/L" @if ($data['instituteClass']->scheme == "O/L"){ selected }  @endif>O/L</option>
                                 </select>
                             </div>
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="email">Year for examination :</label>
-                                <input type="text" required class="form-control form-control-user" id="yearOfExam" placeholder="Year for examination" value="{{ old('yearForExam') }}" name="yearForExam">
+                                <input type="text" required class="form-control form-control-user" id="yearOfExam" placeholder="Year for examination" value="{{$data['instituteClass']->year_for_examination}}" name="yearForExam">
                                 @if($errors->has('yearForExam'))
                                 <div style="color:red">{{ $errors->first('yearForExam') }}</div>
                                 @endif
                             </div>
                             <div class=" col-sm-4">
                                 <label for="email">Subject :</label>
-                                <input type="text" required class="form-control form-control-user" id="subject" placeholder="Subject" value="{{ old('subject') }}" name="subject">
+                                <input type="text" required class="form-control form-control-user" id="subject" placeholder="Subject" value="{{$data['instituteClass']->subject}}" name="subject">
                                 @if($errors->has('subject'))
                                 <div style="color:red">{{ $errors->first('subject') }}</div>
                                 @endif
@@ -163,25 +164,25 @@
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="email">Day :</label>
                                 <select class="form-control" id="exampleFormControlSelect1" name="day" value="{{ old('day') }}" required>
-                                    <option value="Monday">Monday</option>
-                                    <option value="Tuesday">Tuesday</option>
-                                    <option value="Wednesday">Wednesday</option>
-                                    <option value="Thursday">Thursday</option>
-                                    <option value="Friday">Friday</option>
-                                    <option value="Saturday">Saturday</option>
-                                    <option value="Sunday">Sunday</option>
+                                    <option value="Monday" @if ($data['instituteClass']->date == "Monday"){selected}  @endif >Monday</option>
+                                    <option value="Tuesday" @if ($data['instituteClass']->date == "Tuesday"){ selected }  @endif>Tuesday</option>
+                                    <option value="Wednesday" @if ($data['instituteClass']->date == "Wednesday"){ selected }  @endif>Wednesday</option>
+                                    <option value="Thursday" @if ($data['instituteClass']->date == "Thursday"){ selected }  @endif>Thursday</option>
+                                    <option value="Friday" @if ($data['instituteClass']->date == "Friday"){ selected }  @endif>Friday</option>
+                                    <option value="Saturday" @if ($data['instituteClass']->date == "Saturday"){ selected }  @endif>Saturday</option>
+                                    <option value="Sunday" @if ($data['instituteClass']->date == "Sunday"){ selected }  @endif>Sunday</option>
                                 </select>
                             </div>
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="email">Start time :</label>
-                                <input type="time" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Start time" name="startTime" value="{{ old('startTime') }}" required>
+                                <input type="time" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Start time" name="startTime" value="{{$data['instituteClass']->start_time}}" required>
                                 @if($errors->has('startTime'))
                                 <div style="color:red">{{ $errors->first('startTime') }}</div>
                             @endif
                             </div>
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="email">End time :</label>
-                                <input type="time" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="End time" name="endTime" value="{{ old('endTime') }}" required>
+                                <input type="time" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="End time" name="endTime" value="{{$data['instituteClass']->end_time}}" required>
                                 @if($errors->has('endTime'))
                                 <div style="color:red">{{ $errors->first('endTime') }}</div>
                             @endif
@@ -191,7 +192,7 @@
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
                                 <label for="email">Class fee :</label>
-                                <input type="number" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="" name="classFee" value="{{ old('classFee') }}" required>
+                                <input type="number" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="" name="classFee" value="{{$data['instituteClass']->fee}}" required>
                                 @if($errors->has('classFee'))
                                 <div style="color:red">{{ $errors->first('classFee') }}</div>
                             @endif
@@ -201,7 +202,7 @@
                                 <select class="form-control" id="exampleFormControlSelect1" name="teacher" value="{{ old('teacher') }}">
                                         <option value="0">Select teacher</option>
                                     @foreach ($data['teacherList'] as $item)
-                                        <option value={{$item->id}}>{{ $item->first_name." ".$item->last_name }}</option>
+                                        <option value={{$item->id}}  @if ($data['instituteClass']->teacherID == $item->id){ selected }  @endif>{{ $item->first_name." ".$item->last_name }}</option>
                                     @endforeach
                                     
                                    

@@ -24,6 +24,13 @@ class TeacherController extends Controller
         return view('admin.teacher',['teachers'=>$teachers]);
     }
 
+    public function indexDashboard()
+    {
+        //
+        //$teachers = Teacher::all(); 
+        return view('admin.index-teacher');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

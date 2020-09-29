@@ -23,6 +23,14 @@ class StudentController extends Controller
         return view('admin.student',['students'=>$students]);
     }
 
+    
+    public function indexDashboard()
+    {
+        //
+        //$teachers = Teacher::all(); 
+        return view('admin.index-student');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -180,8 +188,11 @@ class StudentController extends Controller
      * @param  \App\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy($id)
     {
         //
+        $student = Student::find($id);
+        $student->delete();
+        return Redirect::to('admin/student')->with('successMsg', 'Student delete successful..!');
     }
 }

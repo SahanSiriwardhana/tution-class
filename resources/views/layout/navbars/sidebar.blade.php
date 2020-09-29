@@ -113,6 +113,14 @@
           <span>Payment</span></a>
     </li>
 
+     <!-- Nav Item - Tables -->
+     <li class="nav-item">
+      <a class="nav-link" href="/admin/enrollment">
+          <i class="far fa-money-bill-alt"></i>
+        {{-- <i class="fas fa-fw fa-table"></i> --}}
+        <span>Enrollement</span></a>
+  </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
