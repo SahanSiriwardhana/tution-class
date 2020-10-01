@@ -24,7 +24,8 @@ class CreateInstituteClassesTable extends Migration
             $table->string('end_time')->nullable(); 
             $table->string('fee')->nullable(); 
             $table->string('teacherID')->nullable();
-            $table->string('status')->nullable(); 
+            $table->string('status')->nullable();
+            $table->unsignedBigInteger('student_count')->nullable()->default(0);
             $table->timestamps();
         });
     }

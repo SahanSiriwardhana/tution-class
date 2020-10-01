@@ -95,9 +95,9 @@
                             <div class="small-box">
                                 <i class="flaticon-email wow fadeIn"></i>
                                 <h4>Contact us today</h4>
-                                <small>Phone: +90 987 665 55 44</small>
-                                <small>Fax:  +90 987 665 55 45</small>
-                                <p><a href="mail:to">info@yoursite.com</a></p>
+                                <small>Phone: +94 55 123 45 67</small>
+                                <small>Fax:  +94 55 123 45 66</small>
+                                <p><a href="mail:to">info@myclass.com</a></p>
                             </div><!-- end small-box -->
                         </div><!-- end col -->
 
@@ -105,8 +105,8 @@
                             <div class="small-box">
                                 <i class="flaticon-map-with-position-marker wow fadeIn"></i>
                                 <h4>Visit Our Office</h4>
-                                <small>PO Box 16122 Collins Street West</small>
-                                <small>Victoria 8007 Australia</small>
+                                <small>PO Box 24 Kaluwella</small>
+                                <small>Galle</small>
                                 <p><a href="#">View on Google Map</a></p>
                             </div><!-- end small-box -->
                         </div><!-- end col -->
@@ -115,8 +115,8 @@
                             <div class="small-box">
                                 <i class="flaticon-share wow fadeIn"></i>
                                 <h4>Be Social</h4>
-                                <small>Twitter: @yourhandle</small>
-                                <small>Facebook: facebook.com/yourhandle</small>
+                                <small>Twitter: @myclass</small>
+                                <small>Facebook: facebook.com/myclass</small>
                                 <p><a href="#">Email Newsletter</a></p>
                             </div><!-- end small-box -->
                         </div><!-- end col -->

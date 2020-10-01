@@ -8,7 +8,9 @@ use App\User;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\DB;
+use Auth;
+use App\InstituteClass;
 
 class TeacherController extends Controller
 {
@@ -119,10 +121,26 @@ class TeacherController extends Controller
      * @param  \App\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
-    public function show(Teacher $teacher)
+    public function show(Request $request)
     {
         //
-      ;
+        $id = $request->id;
+        $class = InstituteClass::find($id);
+
+        $paidCount =count(DB::table('class_payments')
+            ->where([
+                ['class_id','=',$id],
+                ['month','=',date("m")]
+                ])
+            ->get());
+
+        $studentList = DB::table('class_students')
+        ->join('students', 'class_students.student_id', '=', 'students.id')
+        ->where('class_students.class_id', '=', $id)
+        ->get();
+        
+        
+        return view('admin.teacher-class',['class'=>$class,'paidCount'=>$paidCount,'studentList'=>$studentList]);
     }
 
     /**

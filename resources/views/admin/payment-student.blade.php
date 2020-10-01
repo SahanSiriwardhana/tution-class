@@ -38,14 +38,13 @@
                             </button>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-3 mb-3 mb-sm-0">
                         <label for="email">Class Name:</label>
                         <select class="selectpicker" required data-live-search="true" name="className" id="className">
-                            <option data-tokens="0">Select class name</option>
+                            {{-- <option data-tokens="0">Select class name</option> --}}
                             @foreach ($classes as $item)
                                 <option value="{{$item->id}}" data-tokens="{{$item->id}}">{{ $item->class_name }}</option>
                             @endforeach
@@ -54,7 +53,7 @@
                     <div class=" col-sm-3">
                         <label for="email">Student Name:</label>
                         <select class="selectpicker" required data-live-search="true" name="studentName" id="studentName">
-                            <option data-tokens="0">Select student name</option>
+                            {{-- <option data-tokens="0">Select student name</option> --}}
                             @foreach ($students as $item)
                                 <option value="{{$item->id}}" data-tokens="{{$item->id}}">{{ $item->genID }}</option>
                             @endforeach
@@ -132,7 +131,7 @@
                     </div>
                     </div>
 
-                    <label><input type="radio" name="paymentMethod" value="cash" id="radioCashPayment"><strong> Cash</strong> </label>
+                    {{-- <label><input type="radio" name="paymentMethod" value="cash" id="radioCashPayment"><strong> Cash</strong> </label>
                     <div class="form-group row">
                         <div class=" col-sm-6">
                             <label for="email">Value :</label>
@@ -141,7 +140,7 @@
                             <div style="color:red">{{ $errors->first('nameOnCard') }}</div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                 <hr>
                 <div class="form-group row">
                     <div class="col-sm-6">
@@ -157,7 +156,7 @@
                             </tr>
                             <tr>
                                 <td>Student Id</td>
-                                <td><span id="studentID">XXXXXXXX</span> </td>
+                            <td><span id="studentID">{{$students[0]->genID}}</span> </td>
                             </tr>
                             <tr>
                                 <td>Monath</td>
@@ -165,7 +164,7 @@
                             </tr>
                             <tr>
                                 <td>Fee</td>
-                                <td> <span id="fee">Rs 1000.00</span></td>
+                                <td> <span id="fee">Rs 00.00</span></td>
                             </tr>
                             <tr  style="font-size: 10px">
                                 <td colspan="2" align="center">Issued Date : {{now()}}</td>
@@ -182,7 +181,7 @@
                 </div>
 
                     <button class="btn btn-primary btn-user btn-block" id="submit" type="submit" name="submit" id="submit">
-                     Save
+                     Pay
                     </button>
 
                 </form>
@@ -251,6 +250,7 @@
                     method:"POST",
                     data:form,
                     success: function(data){
+                        //alert(data);
                         if(data=="Payment_added")
                         {
                             $(".sucess-msg").css("display","block");
@@ -266,9 +266,9 @@
                         }
                        
                         $('#frm').trigger("reset");
-                        document.body.scrollTop = 0; // For Safari
-                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-                        $("#cardSection").css("display","block");
+                            document.body.scrollTop = 0; // For Safari
+                            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
                     }
                 });
         });

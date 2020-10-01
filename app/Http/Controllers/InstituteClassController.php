@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
+
 class InstituteClassController extends Controller
 {
     /**
@@ -22,6 +23,19 @@ class InstituteClassController extends Controller
         //
         $instituteClass = DB::table('institute_classes')->get(); 
         return view('admin.class',['instituteClass'=>$instituteClass]);
+    }
+
+    public function classStudentIndex($id)
+    {
+        $class = InstituteClass::find($id);
+
+        $studentList = DB::table('class_students')
+            ->join('students', 'class_students.student_id', '=', 'students.id')
+            ->where('class_students.class_id', '=', $id)
+            ->get();
+
+        //$instituteClass = DB::table('institute_classes')->get(); 
+        return view('admin.class-student-list',['studentList'=>$studentList,'className'=>$class->class_name]);
     }
 
     /**

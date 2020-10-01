@@ -35,7 +35,15 @@
                         </div>
                       </div>
                       <div class="mt-1 row no-gutters align-content-around">
-                        <div class="col mr-5">
+                        <div class="col ">
+                          <a href="/admin/class-student/{{$item->id}}" class="btn btn-success btn-icon-split">
+                            <span class="icon text-white-50">
+                              <i class="fas fa-eye"></i>
+                            </span>
+                            <span class="text">View</span>
+                          </a>
+                        </div>
+                        <div class="col">
                           <a href="/admin/class/{{$item->id}}" class="btn btn-info btn-icon-split">
                             <span class="icon text-white-50">
                               <i class="fas fa-edit"></i>
@@ -43,6 +51,7 @@
                             <span class="text">Edit</span>
                           </a>
                         </div>
+                       
                         <div class="col-auto">
                           <a href="/admin/class-delete/{{$item->id}}" class="btn btn-danger btn-icon-split">
                             <span class="icon text-white-50">

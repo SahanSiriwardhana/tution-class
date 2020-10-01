@@ -67,18 +67,27 @@ class ClassStudentController extends Controller
         if ($validation->fails()) {
             return Redirect::back()->withErrors($validation)->withInput();
         }else{
+            if(ClassStudent::where([
+                ['class_id','=',$request->input('className')],
+                ['student_id','=',$request->input('studentName')]
+                ])->exists()){
+                    return Redirect::to('admin/enrollment')->with('successMsg', 'Student already enrolled to this class ..!');
+            }else{
 
-            $instituteClass = ClassStudent::create([
-                'class_id' => $request->input('className'),
-                'student_id' => $request->input('studentName'),
+                $instituteClass = ClassStudent::create([
+                    'class_id' => $request->input('className'),
+                    'student_id' => $request->input('studentName'),
+                    
+                ]);
+
+                $result = $instituteClass->save();
                 
-            ]);
-
-            $result = $instituteClass->save();
-
-            if($result)
-            {
-                    return Redirect::to('admin/enrollment')->with('successMsg', 'Enrollment added successful..!');
+                $model = InstituteClass::find( $request->input('className') );
+                $model->increment('student_count',1);
+                if($result)
+                {
+                        return Redirect::to('admin/enrollment')->with('successMsg', 'Enrollment added successful..!');
+                }
             }
         }
     }

@@ -5,8 +5,8 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-  <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-      class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+  {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+      class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
 </div>
 
 <!-- Content Row -->
@@ -36,7 +36,7 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">No of new student(Monthly)</div>
-            <div class="h5 mb-0 font-weight-bold text-gray-800">120</div>
+          <div class="h5 mb-0 font-weight-bold text-gray-800">{{$studentsCountMonthly}}</div>
           </div>
           <div class="col-auto">
             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -57,12 +57,7 @@
               <div class="col-auto">
                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$teachersCount}}</div>
               </div>
-              <div class="col">
-                <div class="progress progress-sm mr-2">
-                  <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
-                    aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
+            
             </div>
           </div>
           <div class="col-auto">
@@ -93,7 +88,7 @@
 
 <!-- Content Row -->
 
-<div class="row">
+{{-- <div class="row">
 
   <!-- Area Chart -->
   <div class="col-xl-8 col-lg-7">
@@ -163,7 +158,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <div class="row">
   <div class="col-xl-12 col-lg-12">
@@ -187,7 +182,6 @@
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Class Name</th>
                 <th>Teacher Name</th>
                 <th>Class fee</th>
@@ -200,7 +194,6 @@
             </thead>
             <tfoot>
               <tr>
-                <th>ID</th>
                 <th>Class Name</th>
                 <th>Teacher Name</th>
                 <th>Class fee</th>
@@ -213,18 +206,20 @@
             </tfoot>
             <tbody>
 
-              {{-- @foreach ($teachers as $item)
+              @foreach ($classList as $item)
                         <tr>
-                          <th>{{$item->genID}}</th>
-              <th>{{$item->first_name}} {{$item->last_name}}</th>
-              <th>{{$item->email}}</th>
-              <th>{{$item->contact_no}}</th>
-              <th>
-                <a href="/admin/teacher/{{$item->id}}"> <i class="fas fa-edit"></i></a>
-                <a href="/admin/teacher-delete/{{$item->id}}" style="color:red"> <i class="fas fa-trash-alt"></i></a>
-              </th>
-              </tr>
-              @endforeach --}}
+                          <th>{{$item->class_name}}</th>
+                          <th>{{$item->first_name}} {{$item->last_name}}</th>
+                          <th>{{$item->fee}}</th>
+                          <th>{{$item->date}}</th>
+                          <th>{{$item->student_count}} </th>
+                          <th>{{$item->paidCount}}</th>
+                          <th>{{$item->student_count - $item->paidCount}}</th>
+                          <th>
+                            <a href="/admin/class-student/{{$item->id}}" style="color:green"> <i class="fas fa-eye"></i></a>
+                          </th>
+                        </tr>
+              @endforeach
 
 
             </tbody>

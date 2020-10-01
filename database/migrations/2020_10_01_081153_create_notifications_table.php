@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClassPaymentsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateClassPaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('class_payments', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('class_id')->nullable();
-            $table->unsignedBigInteger('student_id')->nullable();
-            $table->unsignedBigInteger('month')->nullable();
-            $table->string('payment_method')->nullable();
+            $table->string('date')->nullable();
+            $table->text('message')->nullable();
             $table->foreign('class_id')->references('id')->on('institute_classes');
-            $table->foreign('student_id')->references('id')->on('students');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateClassPaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_payments');
+        Schema::dropIfExists('notifications');
     }
 }

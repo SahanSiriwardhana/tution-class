@@ -20,7 +20,7 @@
             <div class="row">
                 @if(session()->has('successMsg'))
                 <div class="row col-md-12">
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show col-md-12" role="alert">
                     {{ session()->get('successMsg') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

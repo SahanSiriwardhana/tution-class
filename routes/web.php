@@ -47,6 +47,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'=>'teacher-update'
     ]);
     Route::get('teacher/{id}', 'TeacherController@edit');
+    Route::get('teacher-class/{id}', 'TeacherController@show');
     Route::get('teacher-delete/{id}', 'TeacherController@destroy');
     Route::get('teacher-enter', 'TeacherController@create');
 
@@ -74,6 +75,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'uses'=>'InstituteClassController@update',
         'as'=>'class-update'
     ]);
+    Route::get('class-student/{id}', 'InstituteClassController@classStudentIndex');
+    
     Route::get('class-enter', 'InstituteClassController@create');
     Route::get('class/{id}', 'InstituteClassController@edit');
     Route::get('class-delete/{id}', 'InstituteClassController@destroy');
@@ -91,7 +94,23 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     ]);
 
     Route::get('payment', 'ClassPaymentController@index');
+    Route::post('payment-create', [
+        'uses'=>'ClassPaymentController@store',
+        'as'=>'payment-create'
+    ]);
 
+    Route::get('notification', 'NotificationController@index');
+    Route::post('notification', [
+        'uses'=>'NotificationController@store',
+        'as'=>'notification-post'
+    ]);
+    Route::post('notification/{id}', [
+        'uses'=>'NotificationController@update',
+        'as'=>'notification-update'
+    ]);
+    Route::get('notification/{id}', 'NotificationController@edit');
+    Route::get('notification-delete/{id}', 'TeacherController@destroy');
+    Route::get('notification-create', 'NotificationController@create');
 });
 
 Route::post('class', [

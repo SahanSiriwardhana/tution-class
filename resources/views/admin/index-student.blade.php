@@ -4,8 +4,8 @@
 @section('content')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-      <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+      <h1 class="h3 mb-0 text-gray-800">Student Dashboard</h1>
+      {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
     </div>
 
     <!-- Content Row -->
@@ -18,7 +18,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">No of Class (Total)</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">1200</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{$classCount}}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -34,8 +34,8 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">No of new student(Monthly)</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">120</div>
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">No of new paid classes ( Month : {{date("M")}})</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{$paidClassCount}}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -47,20 +47,16 @@
 
       <!-- Earnings (Monthly) Card Example -->
       <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
+        <div class="card border-left-danger shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">No of teachers (Total)</div>
+                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">No of new pending classes ( Month : {{date("M")}})</div>
                 <div class="row no-gutters align-items-center">
                   <div class="col-auto">
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">40</div>
+                  <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$classCount-$paidClassCount}}</div>
                   </div>
-                  <div class="col">
-                    <div class="progress progress-sm mr-2">
-                      <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
               <div class="col-auto">
@@ -72,7 +68,7 @@
       </div>
 
       <!-- Pending Requests Card Example -->
-      <div class="col-xl-3 col-md-6 mb-4">
+      {{-- <div class="col-xl-3 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
           <div class="card-body">
             <div class="row no-gutters align-items-center">
@@ -86,17 +82,17 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> --}}
     </div>
 
     <!-- Content Row -->
 
 
     <div class="row">
-      <div class="col-xl-12 col-lg-12">
+      <div class="col-xl-6 col-lg-6 col-sm-12">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Classes list</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Paid classes list ( Month : {{date("M")}})</h6>
           </div>
           <div class="card-body">
     
@@ -111,47 +107,35 @@
             @endif
     
             <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>ID</th>
                     <th>Class Name</th>
-                    <th>Teacher Name</th>
-                    <th>Class fee</th>
-                    <th>Date</th>
-                    <th>Number of student</th>
-                    <th>Number of paid student</th>
-                    <th>Number of pending student</th>
-                    <th>Action</th>
+                    <th>Fee</th>
+                    <th>Payment method</th>
+                    <th>Paid date</th>
+                    
                   </tr>
                 </thead>
                 <tfoot>
                   <tr>
-                    <th>ID</th>
                     <th>Class Name</th>
-                    <th>Teacher Name</th>
-                    <th>Class fee</th>
-                    <th>Date</th>
-                    <th>Number of student</th>
-                    <th>Number of paid student</th>
-                    <th>Number of pending student</th>
-                    <th>Action</th>
+                    <th>Fee</th>
+                    <th>Payment method</th>
+                    <th>Paid date</th>
                   </tr>
                 </tfoot>
                 <tbody>
     
-                  {{-- @foreach ($teachers as $item)
+                  @foreach ($paidList as $item)
                             <tr>
-                              <th>{{$item->genID}}</th>
-                  <th>{{$item->first_name}} {{$item->last_name}}</th>
-                  <th>{{$item->email}}</th>
-                  <th>{{$item->contact_no}}</th>
-                  <th>
-                    <a href="/admin/teacher/{{$item->id}}"> <i class="fas fa-edit"></i></a>
-                    <a href="/admin/teacher-delete/{{$item->id}}" style="color:red"> <i class="fas fa-trash-alt"></i></a>
-                  </th>
-                  </tr>
-                  @endforeach --}}
+                              <th>{{$item->class_name}}</th>
+                              <th>{{$item->fee}} </th>
+                              <th>{{$item->payment_method}}</th>
+                              <th>{{$item->created_at}}</th>
+                              
+                            </tr>
+                  @endforeach
     
     
                 </tbody>
@@ -160,6 +144,61 @@
           </div>
         </div>
       </div>
+
+      <div class="col-xl-6 col-lg-6 col-sm-12">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Pending classes list ( Month : {{date("M")}})</h6>
+          </div>
+          <div class="card-body">
+    
+    
+            @if(session()->has('successMsg'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session()->get('successMsg') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            @endif
+    
+            <div class="table-responsive">
+              <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Class Name</th>
+                    <th>Fee</th>
+                    <th>Class date</th>
+                    
+                    
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Class Name</th>
+                    <th>Fee</th>
+                    <th>Class date</th>
+                  
+                  </tr>
+                </tfoot>
+                <tbody>
+    
+                  @foreach ($unpaidList as $item)
+                            <tr>
+                              <th>{{$item->class_name}}</th>
+                              <th>{{$item->fee}} </th>
+                              <th>{{$item->date}}</th>
+                            </tr>
+                  @endforeach
+    
+    
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <!-- Content Row -->
     {{-- <div class="row">
@@ -304,6 +343,11 @@
 
 <!-- Page level custom scripts -->
 <script src="{{URL::asset('js/demo/datatables-demo.js')}}"></script>
+<script>
+  $(document).ready(function() {
+    $('table.display').DataTable();
+} );
+</script>
 @endpush
 
 
