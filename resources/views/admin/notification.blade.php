@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title','Teacher List')
+@section('title','Notification List')
 @section('content')
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -49,7 +49,7 @@
                         <th>{{$item->message}}</th>
                         <th>
                           <a href="/admin/notification/{{$item->id}}"> <i class="fas fa-edit"></i></a>
-                          {{-- <a href="/admin/notification-delete/{{$item->id}}" style="color:red"> <i class="fas fa-trash-alt"></i></a> --}}
+                          <a href="/admin/notification-delete/{{$item->id}}" style="color:red"> <i class="fas fa-trash-alt"></i></a>
                         </th>
                       </tr>
                     @endforeach

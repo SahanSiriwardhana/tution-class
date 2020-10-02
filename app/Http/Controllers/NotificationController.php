@@ -26,6 +26,7 @@ class NotificationController extends Controller
         $notification = Notification::join('institute_classes','notifications.class_id','=','institute_classes.id')
         ->where('institute_classes.teacherID','=',$teacher[0]->id)
         ->select('institute_classes.class_name', 'notifications.*')
+        ->orderBy('notifications.created_at', 'DESC')
         ->get();
       //  dd($notification);
         return view('admin.notification',['notification'=>$notification]);
@@ -162,8 +163,11 @@ class NotificationController extends Controller
      * @param  \App\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notification $notification)
+    public function destroy($id)
     {
         //
+        $notification = Notification::find($id);
+        $notification->delete();
+        return Redirect::to('admin/notification')->with('successMsg', 'Notification delete successful..!');
     }
 }

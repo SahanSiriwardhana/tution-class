@@ -109,8 +109,14 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'=>'notification-update'
     ]);
     Route::get('notification/{id}', 'NotificationController@edit');
-    Route::get('notification-delete/{id}', 'TeacherController@destroy');
+    Route::get('notification-delete/{id}', 'NotificationController@destroy');
     Route::get('notification-create', 'NotificationController@create');
+
+    Route::get('profile', 'UserController@indexProfile');
+    Route::post('profile/{id}', [
+        'uses'=>'UserController@updatePassword',
+        'as'=>'password-update'
+    ]);
 });
 
 Route::post('class', [

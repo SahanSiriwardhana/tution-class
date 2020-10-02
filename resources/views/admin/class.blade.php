@@ -34,17 +34,17 @@
                           <i class="fas fa-calendar fa-2x text-gray-300"></i>
                         </div>
                       </div>
-                      <div class="mt-1 row no-gutters align-content-around">
-                        <div class="col ">
-                          <a href="/admin/class-student/{{$item->id}}" class="btn btn-success btn-icon-split">
+                      <div class="mt-1 row align-item-around col-md-12">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                          <a href="/admin/class-student/{{$item->id}}" class="btn btn-success btn-icon-split btn-sm">
                             <span class="icon text-white-50">
                               <i class="fas fa-eye"></i>
                             </span>
                             <span class="text">View</span>
                           </a>
                         </div>
-                        <div class="col">
-                          <a href="/admin/class/{{$item->id}}" class="btn btn-info btn-icon-split">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                          <a href="/admin/class/{{$item->id}}" class="btn btn-info btn-icon-split btn-sm">
                             <span class="icon text-white-50">
                               <i class="fas fa-edit"></i>
                             </span>
@@ -52,8 +52,8 @@
                           </a>
                         </div>
                        
-                        <div class="col-auto">
-                          <a href="/admin/class-delete/{{$item->id}}" class="btn btn-danger btn-icon-split">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                          <a href="/admin/class-delete/{{$item->id}}" class="btn btn-danger btn-icon-split btn-sm">
                             <span class="icon text-white-50">
                               <i class="fas fa-trash"></i>
                             </span>
