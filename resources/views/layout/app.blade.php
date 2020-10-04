@@ -26,7 +26,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    @include('layout.navbars.sidebar')
+    @include('layout.navbars.sidebar',['pageName'=>$pageName])
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->

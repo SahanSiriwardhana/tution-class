@@ -31,16 +31,16 @@ class InstituteClassController extends Controller
 
         $studentList = DB::table('class_students')
             ->join('students', 'class_students.student_id', '=', 'students.id')
-           // ->leftJoin('class_payments', 'class_students.student_id', '=', 'class_payments.student_id')
             ->leftJoin('class_payments', function($join)
                          {
                              $join->on('class_students.student_id', '=', 'class_payments.student_id');
+                             $join->on('class_students.class_id','=','class_payments.class_id');
                              $join->on('month','=',DB::raw(date("m")));
                          })
             ->where([
                 ['class_students.class_id', '=', $id]
                 ])
-            ->select('class_students.id as class_students_id','students.genID','students.first_name','students.last_name','students.email','students.contact_no','students.grade','class_payments.id')
+            ->select('class_students.id as class_students_id','students.genID','students.first_name','students.last_name','students.email','students.contact_no','students.grade','class_payments.id','class_payments.month')
             ->get();
 
         //dd($studentList);

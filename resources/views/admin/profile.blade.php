@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app',['pageName' => 'profile'])
 @section('title','User Profile')
 @section('content')
 

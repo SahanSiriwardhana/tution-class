@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app',['pageName' => 'teacher'])
 @section('title','Teacher List')
 @section('content')
         <!-- Page Heading -->

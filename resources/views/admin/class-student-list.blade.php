@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app',['pageName' => 'class'])
 @section('title','Student List')
 @section('content')
         <!-- Page Heading -->

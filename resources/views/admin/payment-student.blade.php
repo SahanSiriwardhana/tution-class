@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app',['pageName' => 'payment'])
 @section('title','Payment')
     @section('content')
 
@@ -234,7 +234,60 @@
                                   <th>{{$item->class_name}}</th>
                                   <th>{{$item->fee}} </th>
                                   <th>{{$item->payment_method}}</th>
-                                  <th>{{$item->month}}</th>
+                                  <th>
+                                    @switch($item->month)
+                                    @case(1)
+                                        Jan.
+                                        @break
+                                
+                                    @case(2)
+                                        Feb.
+                                        @break
+    
+                                    @case(3)
+                                        Mar.
+                                        @break
+                                
+                                    @case(4)
+                                        Apr.
+                                        @break
+    
+                                    @case(5)
+                                        May.
+                                        @break
+                                
+                                    @case(6)
+                                        Jun.
+                                        @break
+                                        
+                                    @case(7)
+                                        Jul.
+                                        @break
+                                
+                                    @case(8)
+                                        Aug.
+                                        @break
+    
+                                    @case(9)
+                                        Sept.
+                                        @break
+                                
+                                    @case(10)
+                                        Oct.
+                                        @break
+                                        
+                                    @case(11)
+                                        Nov.
+                                        @break
+                                
+                                    @case(12)
+                                        Dec.
+                                        @break
+                                
+                                    @default
+                                        Default case...
+                                    @endswitch
+                                 </th>
                                   <th>{{$item->created_at}}</th>
                                   
                                 </tr>

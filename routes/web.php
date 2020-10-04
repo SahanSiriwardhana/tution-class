@@ -96,9 +96,15 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     ]);
 
     Route::get('payment', 'ClassPaymentController@index');
+    Route::get('payment-search', 'ClassPaymentController@searchPaymentIndex');
     Route::post('payment-create', [
         'uses'=>'ClassPaymentController@store',
         'as'=>'payment-create'
+    ]);
+
+    Route::post('payment-search', [
+        'uses'=>'ClassPaymentController@search',
+        'as'=>'payment-search'
     ]);
 
     Route::get('notification', 'NotificationController@index');

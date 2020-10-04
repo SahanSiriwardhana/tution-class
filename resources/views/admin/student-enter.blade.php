@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app',['pageName' => 'student'])
 @section('title','Student Enter Form')
     @section('content')
 

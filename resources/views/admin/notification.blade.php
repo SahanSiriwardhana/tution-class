@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app',['pageName' => 'notification'])
 @section('title','Notification List')
 @section('content')
         <!-- Page Heading -->

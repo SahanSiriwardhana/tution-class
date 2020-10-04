@@ -12,7 +12,7 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item  @if ($pageName=='dashboard'){ active } @endif">
       <a class="nav-link" href="/admin/dashboard">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
@@ -23,7 +23,7 @@
     {{-- Only for admin --}}
     @if(Auth::user()->user_role=='1')
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    <li class="nav-item @if ($pageName=='teacher'){ active } @endif">
       <a class="nav-link" href="/admin/teacher">
         <i class="fas fa-chalkboard-teacher"></i>
         {{-- <i class="fas fa-fw fa-chart-area"></i> --}}
@@ -31,7 +31,7 @@
     </li>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item @if ($pageName=='student'){ active } @endif">
       <a class="nav-link" href="/admin/student">
         <i class="fas fa-user"></i>
         {{-- <i class="fas fa-fw fa-table"></i> --}}
@@ -41,7 +41,7 @@
     <hr class="sidebar-divider">
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item @if ($pageName=='class'){ active } @endif">
         <a class="nav-link" href="/admin/class">
             <i class="fas fa-school"></i>
           {{-- <i class="fas fa-fw fa-table"></i> --}}
@@ -49,15 +49,22 @@
     </li>
     
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item @if ($pageName=='payment'){ active } @endif">
         <a class="nav-link" href="/admin/payment">
             <i class="far fa-money-bill-alt"></i>
           {{-- <i class="fas fa-fw fa-table"></i> --}}
           <span>Payment</span></a>
     </li>
 
+    <li class="nav-item @if ($pageName=='payment-search'){ active } @endif">
+      <a class="nav-link" href="/admin/payment-search">
+          <i class="fas fa-search"></i>
+        {{-- <i class="fas fa-fw fa-table"></i> --}}
+        <span>Payment Search</span></a>
+    </li>
+
      <!-- Nav Item - Tables -->
-     <li class="nav-item">
+     <li class="nav-item  @if ($pageName=='enrollment'){ active } @endif">
       <a class="nav-link" href="/admin/enrollment">
           <i class="far fa-money-bill-alt"></i>
         {{-- <i class="fas fa-fw fa-table"></i> --}}
@@ -70,13 +77,13 @@
   {{-- Only for teachers (user_role = 2) --}}
   @if(Auth::user()->user_role=='2')
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item @if ($pageName=='notification'){ active } @endif">
       <a class="nav-link" href="/admin/notification">
           <i class="far fa-bell"></i>
         {{-- <i class="fas fa-fw fa-table"></i> --}}
         <span>Notification</span></a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item @if ($pageName=='payment'){ active } @endif">
       <a class="nav-link" href="/admin/teacher-payment-history">
           <i class="far fa-money-bill-alt"></i>
         {{-- <i class="fas fa-fw fa-table"></i> --}}
@@ -87,7 +94,7 @@
 
   @if(Auth::user()->user_role=='3')
   <!-- Nav Item - Tables -->
-  <li class="nav-item">
+  <li class="nav-item @if ($pageName=='payment'){ active } @endif">
     <a class="nav-link" href="/admin/payment">
         <i class="far fa-money-bill-alt"></i>
       {{-- <i class="fas fa-fw fa-table"></i> --}}

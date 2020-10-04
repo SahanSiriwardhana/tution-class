@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app',['pageName' => 'teacher-class'])
 @section('title','Dashboard') 
 
 @section('content')

@@ -1,10 +1,10 @@
-@extends('layout.app',['pageName' => 'payment'])
+@extends('layout.app',['pageName' => 'payment-search'])
 @section('title','Payment')
     @section('content')
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Card payments</h1>
+            <h1 class="h3 mb-0 text-gray-800">Payment search</h1>
             {{-- <a href="biography-middle-enter.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-calendar fa-sm text-white-50"></i> Add day</a> --}}
         </div>
 
@@ -12,7 +12,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
             
-                <h6 class="m-0 font-weight-bold text-primary">Classes Enter Form</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Search Form</h6>
             
             </div>
             <div class="card-body">
@@ -22,17 +22,17 @@
                 <div class="form-group row">
                     <div class="col-sm-12 mb-sm-0">
                        
-                        <div class="sucess-msg" style="display:none">
+                        {{-- <div class="sucess-msg" style="display:none">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 Payment added successful..!
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="sucess-msg2" style="display:none">
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                Already Paid..!
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Record not found
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -79,69 +79,14 @@
                             
                         </select>
                     </div>
+                    <div class=" col-sm-3">
+                        <button class="btn btn-primary btn-user btn-block" id="search"  name="submit" >
+                            Search
+                           </button>
+       
+                    </div>
                 </div>
-                <hr>
-                
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                            <h5>Payment method</h5>
-                        </div>
-                    </div>
-                    {{-- <label><input type="radio" name="paymentMethod" checked value="card" id="radioCardPayment"><strong> Credit card</strong> </label> --}}
-                    {{-- <div id="cardSection">
-                    <div class="form-group row">
-                        <div class=" col-sm-6">
-                            <label for="email">Name on Card :</label>
-                            <input type="text" required="" class="form-control form-control-user card-method" id="nameOnCard"  placeholder="" value="{{ old('nameOnCard') }}" name="nameOnCard">
-                            @if($errors->has('nameOnCard'))
-                            <div style="color:red">{{ $errors->first('nameOnCard') }}</div>
-                            @endif
-                        </div>
-                        <div class=" col-sm-6">
-                            <label for="email">Card Number :</label>
-                            <input type="text" required="" class="form-control form-control-user card-method" id="cardNumber" placeholder="1234  5678  9876  5432" value="{{ old('cardNumber') }}" name="cardNumber">
-                            @if($errors->has('cardNumber'))
-                            <div style="color:red">{{ $errors->first('cardNumber') }}</div>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class=" col-sm-4">
-                            <label for="email">Expiry Month :</label>
-                            <input type="text" required="" class="form-control form-control-user card-method" id="expiryMonth" placeholder="MM" value="{{ old('expiryMonth') }}" name="expiryMonth">
-                            @if($errors->has('expiryMonth'))
-                            <div style="color:red">{{ $errors->first('expiryMonth') }}</div>
-                            @endif
-                        </div>
-                        
-                        <div class=" col-sm-4">
-                            <label for="email">Expiry Year :</label>
-                            <input type="text" required="" class="form-control form-control-user card-method" id="subject" placeholder="YY" value="{{ old('subject') }}" name="subject">
-                            @if($errors->has('subject'))
-                            <div style="color:red">{{ $errors->first('subject') }}</div>
-                            @endif
-                        </div>
-                        <div class=" col-sm-4">
-                            <label for="email">CVV :</label>
-                            <input type="text" required="" class="form-control form-control-user card-method" id="cvv" placeholder="" value="{{ old('cvv') }}" name="cvv">
-                            @if($errors->has('cvv'))
-                            <div style="color:red">{{ $errors->first('cvv') }}</div>
-                            @endif
-                        </div>
-                    </div>
-                    </div> --}}
-
-                    <label><input type="radio" name="paymentMethod" checked value="cash" id="radioCashPayment"><strong> Cash</strong> </label>
-                    <div class="form-group row">
-                        <div class=" col-sm-6">
-                            <label for="email">Value :</label>
-                            <input type="text" readonly  class="form-control form-control-user" id="cashVal"  placeholder="000.00" value="{{ old('nameOnCard') }}" name="cash">
-                            @if($errors->has('nameOnCard'))
-                            <div style="color:red">{{ $errors->first('nameOnCard') }}</div>
-                            @endif
-                        </div>
-                    </div>
+              
                 <hr>
                 <div class="form-group row">
                     <div class="col-sm-6">
@@ -181,8 +126,8 @@
                     </div>
                 </div>
 
-                    <button class="btn btn-primary btn-user btn-block" id="submit" type="submit" name="submit" id="submit">
-                     Save
+                    <button class="btn btn-primary btn-user btn-block" id="submit" type="submit" name="submit"  style="display: none">
+                     Print
                     </button>
 
                 </form>
@@ -232,46 +177,53 @@
            }
         });
 
-        $('#studentName').on('change', function() {
+        // $('#studentName').on('change', function() {
             
-            $("#studentID").html($('#studentName option:selected').text());
-        });
+        //     $("#studentID").html($('#studentName option:selected').text());
+        // });
 
         $('#month').on('change', function() {
             
             $("#monthCard").html($('#month option:selected').text());
         });
 
-        $('#frm').on('submit',function(e){
+        $('#submit').on('click',function(e){
+            e.preventDefault();
+           
+            w=window.open(null, 'Print_Page', 'scrollbars=yes');        
+            w.document.write($('.result').html());
+            w.document.close();
+            w.print();
+        
+            $('#frm').trigger("reset");
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
+        $('#search').on('click',function(e){
             e.preventDefault();
             var form = $('#frm').serialize();
-           
             $.ajax({
-                    url:"{{ route('payment-create') }}",
+                    url:"{{ route('payment-search') }}",
                     method:"POST",
                     data:form,
                     success: function(data){
-                        if(data=="Payment_added")
+                        if(data=="true")
                         {
-                            $(".sucess-msg").css("display","block");
+                            $("#studentID").html($('#studentName option:selected').text());
+                           // $("#submit").removeAttr("disabled");
+                            $("#submit").css("display","block");
                             $(".sucess-msg2").css("display","none");
-                            w=window.open(null, 'Print_Page', 'scrollbars=yes');        
-                            w.document.write($('.result').html());
-                            w.document.close();
-                            w.print();
-                            $("#cardSection").css("display","block");
-                        }else if(data=="Already_Paid"){
+                        }else{
                             $(".sucess-msg2").css("display","block");
-                            $(".sucess-msg").css("display","none");
+                          //  $("#submit").setAttr("disabled");
+                            $("#submit").css("display","none");
+                            $("#studentID").html("XXXXXXXX");
                         }
                        
-                        $('#frm').trigger("reset");
-                        document.body.scrollTop = 0; // For Safari
-                        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-                        $("#cardSection").css("display","block");
                     }
                 });
-        });
+        })
     });
     </script>
 

@@ -49,6 +49,28 @@ class ClassPaymentController extends Controller
         }
     }
 
+    public function searchPaymentIndex()
+    {
+        $classes = InstituteClass::all(); 
+        $students = Student::all();
+        return view('admin.payment-search',['classes'=>$classes,'students'=>$students]);   
+    }
+
+    public function search(Request $request)
+    {
+        if(ClassPayment::where([
+            ['class_id','=',$request->input('className')],
+            ['student_id','=',$request->input('studentName')],
+            ['month','=',$request->input('month')]
+            ])->exists()){
+                return "true";
+        }else{
+            
+                return "false";
+            
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,6 +79,7 @@ class ClassPaymentController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
