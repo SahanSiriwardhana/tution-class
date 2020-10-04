@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::get('teacher', 'TeacherController@index');
     Route::get('teacher-dashboard', 'TeacherController@indexDashboard');
+    Route::get('teacher-payment-history', 'TeacherController@teacherPayment');
     Route::post('teacher', [
         'uses'=>'TeacherController@store',
         'as'=>'teacher-register'
@@ -76,7 +77,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'=>'class-update'
     ]);
     Route::get('class-student/{id}', 'InstituteClassController@classStudentIndex');
-    
+    Route::get('class-student-delete/{id}', 'ClassStudentController@destroy');
+
     Route::get('class-enter', 'InstituteClassController@create');
     Route::get('class/{id}', 'InstituteClassController@edit');
     Route::get('class-delete/{id}', 'InstituteClassController@destroy');

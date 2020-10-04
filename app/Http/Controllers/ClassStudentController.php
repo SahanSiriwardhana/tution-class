@@ -132,8 +132,11 @@ class ClassStudentController extends Controller
      * @param  \App\ClassStudent  $classStudent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClassStudent $classStudent)
+    public function destroy($id)
     {
         //
+        $classStudent = ClassStudent::find($id);
+        $classStudent->delete();
+        return Redirect::back()->with('successMsg', 'Student removed from class successful..!');
     }
 }

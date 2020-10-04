@@ -10,6 +10,7 @@ use App\Student;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class ClassPaymentController extends Controller
 {
@@ -34,7 +35,17 @@ class ClassPaymentController extends Controller
             ->select('institute_classes.*')
             ->get(); 
 
-            return view('admin.payment-student',['classes'=>$classes,'students'=>$students]);
+            
+            $paidList = DB::table('class_payments')
+            ->join('institute_classes','class_payments.class_id','=','institute_classes.id')
+            ->where([
+                ['student_id','=',$students[0]->id]
+                ])
+            ->select('class_payments.created_at','class_payments.payment_method','class_name','fee','month')
+            ->orderBy('class_payments.created_at', 'DESC')
+            ->get();
+
+            return view('admin.payment-student',['classes'=>$classes,'students'=>$students,'paidList'=>$paidList]);
         }
     }
 

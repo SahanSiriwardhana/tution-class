@@ -33,6 +33,19 @@ class TeacherController extends Controller
         return view('admin.index-teacher');
     }
 
+    public function teacherPayment()
+    {
+        //
+        $teacher = Teacher::where('userID','=',Auth::user()->id)->get();
+      //  $classList =DB::table('institute_classes')->where('teacherID','=',$teacher[0]->id)->get();
+        
+        $classList  = DB::select("SELECT i.id,i.class_name,t.first_name,t.last_name,i.fee,i.date,i.student_count,COUNT(c.id) AS paidCount,c.month FROM institute_classes AS i INNER JOIN teachers AS t ON i.teacherID = t.id LEFT JOIN class_payments AS c ON (i.id = c.class_id) where t.id = ".$teacher[0]->id." GROUP BY c.month");
+        
+        return view('admin.teacher-payment',['classList'=>$classList]);
+        
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

@@ -31,10 +31,20 @@ class InstituteClassController extends Controller
 
         $studentList = DB::table('class_students')
             ->join('students', 'class_students.student_id', '=', 'students.id')
-            ->where('class_students.class_id', '=', $id)
+           // ->leftJoin('class_payments', 'class_students.student_id', '=', 'class_payments.student_id')
+            ->leftJoin('class_payments', function($join)
+                         {
+                             $join->on('class_students.student_id', '=', 'class_payments.student_id');
+                             $join->on('month','=',DB::raw(date("m")));
+                         })
+            ->where([
+                ['class_students.class_id', '=', $id]
+                ])
+            ->select('class_students.id as class_students_id','students.genID','students.first_name','students.last_name','students.email','students.contact_no','students.grade','class_payments.id')
             ->get();
 
-        //$instituteClass = DB::table('institute_classes')->get(); 
+        //dd($studentList);
+
         return view('admin.class-student-list',['studentList'=>$studentList,'className'=>$class->class_name]);
     }
 
@@ -64,18 +74,20 @@ class InstituteClassController extends Controller
     public function store(Request $request)
     {
         //
+        
         $validation = Validator::make($request->all(),[
-            'className'=>'required|unique:institute_classes',
+           // 'className'=>'required|unique:institute_classes',
             'yearForExam'=>'required|digits:4',
             'startTime'=>'required',
             'endTime'=>'required',
             'classFee'=>'required',
         ]);;
-
+        
         if ($validation->fails()) {
+            dd($request->input('className'));
             return Redirect::back()->withErrors($validation)->withInput();
         }else{
-
+            
             $instituteClass = InstituteClass::create([
                 'class_name' => $request->input('className'),
                 'scheme' => $request->input('grade'),
@@ -88,9 +100,9 @@ class InstituteClassController extends Controller
                 'teacherID' => $request->input('teacher'),
                 'status' => 1,
             ]);
-
+            
             $result = $instituteClass->save();
-
+            
             if($result)
             {
                     return Redirect::to('admin/class')->with('successMsg', 'Class added successful..!');

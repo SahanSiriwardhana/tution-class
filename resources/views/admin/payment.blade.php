@@ -87,8 +87,8 @@
                             <h5>Payment method</h5>
                         </div>
                     </div>
-                    <label><input type="radio" name="paymentMethod" checked value="card" id="radioCardPayment"><strong> Credit card</strong> </label>
-                    <div id="cardSection">
+                    {{-- <label><input type="radio" name="paymentMethod" checked value="card" id="radioCardPayment"><strong> Credit card</strong> </label> --}}
+                    {{-- <div id="cardSection">
                     <div class="form-group row">
                         <div class=" col-sm-6">
                             <label for="email">Name on Card :</label>
@@ -130,9 +130,9 @@
                             @endif
                         </div>
                     </div>
-                    </div>
+                    </div> --}}
 
-                    <label><input type="radio" name="paymentMethod" value="cash" id="radioCashPayment"><strong> Cash</strong> </label>
+                    <label><input type="radio" name="paymentMethod" checked value="cash" id="radioCashPayment"><strong> Cash</strong> </label>
                     <div class="form-group row">
                         <div class=" col-sm-6">
                             <label for="email">Value :</label>

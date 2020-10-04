@@ -1,4 +1,5 @@
 @extends('layout.app')
+@section('title','Class enrollment')
     @section('content')
 
         <!-- Page Heading -->

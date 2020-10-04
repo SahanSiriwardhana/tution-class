@@ -31,6 +31,8 @@
                       <th>Email</th>
                       <th>Contact Number</th>
                       <th>Grade</th>
+                      <th>Payment status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -40,6 +42,8 @@
                       <th>Email</th>
                       <th>Contact Number</th>
                       <th>Grade</th>
+                      <th>Payment status</th>
+                      <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -50,6 +54,16 @@
                       <th>{{$item->email}}</th>
                       <th>{{$item->contact_no}}</th>
                       <th>{{$item->grade}}</th>
+                      <th>
+                       @if ($item->id==null)
+                       <span class="badge badge-danger">un-paid</span>
+                       @else
+                       <span class="badge badge-success">paid</span>
+                       @endif
+                      </th>
+                      <th>
+                        <a href="/admin/class-student-delete/{{$item->class_students_id}}" style="color:red"> <i class="fas fa-trash-alt"></i></a>
+                      </th>
                     </tr>
                   @endforeach
                    

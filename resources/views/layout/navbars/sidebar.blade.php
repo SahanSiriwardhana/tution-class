@@ -76,6 +76,12 @@
         {{-- <i class="fas fa-fw fa-table"></i> --}}
         <span>Notification</span></a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/admin/teacher-payment-history">
+          <i class="far fa-money-bill-alt"></i>
+        {{-- <i class="fas fa-fw fa-table"></i> --}}
+        <span>Payment</span></a>
+    </li>
     <hr class="sidebar-divider d-none d-md-block">
   @endif
 

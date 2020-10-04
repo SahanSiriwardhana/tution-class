@@ -188,6 +188,65 @@
             </div>
             </div>
         </div>
+
+        {{-- <div class="col-xl-12 col-lg-12 col-sm-12"> --}}
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Payment history</h6>
+              </div>
+              <div class="card-body">
+        
+        
+                @if(session()->has('successMsg'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {{ session()->get('successMsg') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                @endif
+        
+                <div class="table-responsive">
+                  <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Class Name</th>
+                        <th>Fee</th>
+                        <th>Payment method</th>
+                        <th>Monath</th>
+                        <th>Paid date</th>
+                        
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>Class Name</th>
+                        <th>Fee</th>
+                        <th>Payment method</th>
+                        <th>Month</th>
+                        <th>Paid date</th>
+                      </tr>
+                    </tfoot>
+                    <tbody>
+        
+                       @foreach ($paidList as $item)
+                                <tr>
+                                  <th>{{$item->class_name}}</th>
+                                  <th>{{$item->fee}} </th>
+                                  <th>{{$item->payment_method}}</th>
+                                  <th>{{$item->month}}</th>
+                                  <th>{{$item->created_at}}</th>
+                                  
+                                </tr>
+                      @endforeach 
+        
+        
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          {{-- </div> --}}
     @endsection
 
 @push('js')
@@ -275,8 +334,17 @@
     });
     </script>
 
+    
+<!-- Page level plugins -->
+<script src="{{URL::asset('vendor/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{URL::asset('js/demo/datatables-demo.js')}}"></script>
+
 @endpush
 
 @push('css')
 <link rel="stylesheet" href="{{URL::asset('bootstap-select/css/bootstrap-select.min.css')}}">
+<link href="{{URL::asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 @endpush
