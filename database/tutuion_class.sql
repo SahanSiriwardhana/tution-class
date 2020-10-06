@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2020 at 01:55 AM
+-- Generation Time: Oct 06, 2020 at 04:00 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -37,25 +37,6 @@ CREATE TABLE `class_payments` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `class_payments`
---
-
-INSERT INTO `class_payments` (`id`, `class_id`, `student_id`, `month`, `payment_method`, `created_at`, `updated_at`) VALUES
-(1, 2, 3, 3, 'card', '2020-09-30 23:23:48', '2020-09-30 23:23:48'),
-(2, 1, 3, 10, 'card', '2020-09-30 23:35:12', '2020-09-30 23:35:12'),
-(3, 1, 1, 5, 'card', '2020-09-30 23:37:59', '2020-09-30 23:37:59'),
-(4, 1, 1, 7, 'card', '2020-09-30 23:42:39', '2020-09-30 23:42:39'),
-(5, 1, 1, 4, 'card', '2020-09-30 23:44:27', '2020-09-30 23:44:27'),
-(6, 1, 1, 5, 'cash', '2020-10-01 00:39:13', '2020-10-01 00:39:13'),
-(7, 1, 3, 3, 'cash', '2020-10-01 01:41:34', '2020-10-01 01:41:34'),
-(8, 2, 1, 10, 'card', '2020-10-01 07:32:34', '2020-10-01 07:32:34'),
-(9, 1, 1, 6, 'card', '2020-10-01 07:57:34', '2020-10-01 07:57:34'),
-(10, 1, 1, 1, 'card', '2020-10-01 07:58:51', '2020-10-01 07:58:51'),
-(11, 1, 1, 2, 'card', '2020-10-01 08:02:46', '2020-10-01 08:02:46'),
-(12, 1, 1, 9, 'card', '2020-10-01 08:10:03', '2020-10-01 08:10:03'),
-(13, 1, 1, 10, 'card', '2020-10-01 08:55:52', '2020-10-01 08:55:52');
-
 -- --------------------------------------------------------
 
 --
@@ -69,18 +50,6 @@ CREATE TABLE `class_students` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `class_students`
---
-
-INSERT INTO `class_students` (`id`, `class_id`, `student_id`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, '2020-09-29 16:11:51', '2020-09-29 16:11:51'),
-(2, 1, 3, '2020-09-29 16:13:26', '2020-09-29 16:13:26'),
-(3, 2, 3, NULL, NULL),
-(5, 1, 1, '2020-10-01 07:25:42', '2020-10-01 07:25:42'),
-(6, 1, 4, '2020-10-01 08:25:55', '2020-10-01 08:25:55'),
-(7, 2, 4, '2020-10-01 13:39:49', '2020-10-01 13:39:49');
 
 -- --------------------------------------------------------
 
@@ -125,8 +94,9 @@ CREATE TABLE `institute_classes` (
 --
 
 INSERT INTO `institute_classes` (`id`, `class_name`, `scheme`, `year_for_examination`, `subject`, `date`, `start_time`, `end_time`, `fee`, `teacherID`, `status`, `student_count`, `created_at`, `updated_at`) VALUES
-(1, 'A/L-2024-Maths', 'A/L', '2024', 'Test', 'Friday', '06:58', '03:01', '800', '3', '1', 2, '2020-09-22 17:01:06', '2020-09-29 12:15:26'),
-(2, 'A/L-2020-Test 2', 'A/L', '2020', 'Test 2', 'Monday', '08:06', '04:09', '1800', '4', '1', 3, '2020-09-22 17:06:32', '2020-10-01 13:39:49');
+(1, 'A/L-2024-Maths', 'A/L', '2024', 'Test', 'Friday', '06:58', '03:01', '800', '3', '1', 0, '2020-09-22 17:01:06', '2020-10-05 20:29:13'),
+(2, 'A/L-2020-Test 2', 'A/L', '2020', 'Test 2', 'Monday', '08:06', '04:09', '1800', '4', '1', 0, '2020-09-22 17:06:32', '2020-10-01 13:39:49'),
+(4, 'O/L-2020-Sinhala', 'A/L', '2020', 'Sinhala', 'Wednesday', '14:58', '16:58', '900', '3', '1', 0, '2020-10-04 03:59:53', '2020-10-04 09:37:00');
 
 -- --------------------------------------------------------
 
@@ -177,10 +147,9 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `class_id`, `date`, `message`, `created_at`, `updated_at`) VALUES
-(1, 2, '2020-10-03', 'class na bn', '2020-10-01 04:24:04', '2020-10-01 04:53:20'),
-(2, 2, '2020-10-16', 'class will not held', '2020-10-01 04:55:27', '2020-10-01 04:55:27'),
-(3, 2, '2020-10-21', 'test', '2020-10-01 06:23:12', '2020-10-01 06:23:12'),
-(4, 1, '2020-10-24', 'test 32', '2020-10-01 06:25:46', '2020-10-01 06:25:46');
+(2, 2, '2020-10-16', 'class will not be held', '2020-10-01 04:55:27', '2020-10-01 04:55:27'),
+(4, 1, '2020-10-24', 'test 32', '2020-10-01 06:25:46', '2020-10-01 06:25:46'),
+(5, 2, '2020-10-12', 'redda', '2020-10-02 15:05:26', '2020-10-02 15:05:26');
 
 -- --------------------------------------------------------
 
@@ -251,9 +220,10 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `genID`, `first_name`, `last_name`, `grade`, `email`, `userID`, `contact_no`, `created_at`, `updated_at`) VALUES
-(1, 'STD0001', 'sahan', 'student', '9', 'sudeerasahanstd@gmail.com', '6', '0716531991', '2020-09-20 09:23:35', '2020-09-29 12:06:59'),
+(1, 'STD0001', 'sahan', 'Amarathunga', '9', 'sudeerasahanstd@gmail.com', '6', '0716531991', '2020-09-20 09:23:35', '2020-09-29 12:06:59'),
 (3, 'STD0002', 'Asanka', 'darshana', '8', 'asankad@gmail.com', '8', '0711309416', '2020-09-29 12:47:34', '2020-09-29 12:47:34'),
-(4, 'STD0004', 'Lapa', 'Aiya', '9', 'lapa@gmail.com', '9', '0813214567', '2020-10-01 02:33:55', '2020-10-01 02:33:55');
+(4, 'STD0004', 'Isuru', 'Malaka', '9', 'lapa@gmail.com', '9', '0813214567', '2020-10-01 02:33:55', '2020-10-01 02:33:55'),
+(5, 'STD0005', 'Ashan', 'Sajeewa', '9', 'sanjeewa@gmail.com', '10', '0916206312', '2020-10-05 19:36:19', '2020-10-05 19:36:19');
 
 -- --------------------------------------------------------
 
@@ -278,8 +248,8 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `genID`, `first_name`, `last_name`, `email`, `userID`, `contact_no`, `created_at`, `updated_at`) VALUES
-(3, 'TEC0003', 'Denith edit', 'Kanaka ed', 'kanaka@gmail.com', '3', '0771620876', '2020-09-20 08:16:20', '2020-09-20 08:39:54'),
-(4, 'TEC0004', 'Rang', 'Rath', 'rath@gmail.com', '4', '0716209871', '2020-09-20 09:02:03', '2020-09-20 09:02:03');
+(3, 'TEC0003', 'Denith', 'Liyanaarachchi', 'kanaka@gmail.com', '3', '0771620876', '2020-09-20 08:16:20', '2020-09-20 08:39:54'),
+(4, 'TEC0004', 'Rangana', 'Rasith', 'rath@gmail.com', '4', '0716209871', '2020-09-20 09:02:03', '2020-09-20 09:02:03');
 
 -- --------------------------------------------------------
 
@@ -304,14 +274,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `user_role`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'sudeerasahan@gmail.com', '1', NULL, '$2y$10$jLhtfxfpkOtmwhN2MQDDOeetpntgdO50SUwex5uf1pSs9c9P072uu', NULL, '2020-09-20 06:06:39', '2020-09-20 06:06:39'),
+(1, 'Admin', 'sudeerasahan@gmail.com', '1', NULL, '$2y$10$CdugtwHAPI3zS9TJuKNUw.yYTS/uwt3gGUcgslCI4dBxB7GAAzrGK', NULL, '2020-09-20 06:06:39', '2020-10-02 14:59:36'),
 (3, 'TEC0003', 'kanaka@gmail.com', '2', NULL, '$2y$10$jLhtfxfpkOtmwhN2MQDDOeetpntgdO50SUwex5uf1pSs9c9P072uu', NULL, '2020-09-20 08:16:20', '2020-09-20 08:16:20'),
 (4, 'TEC0004', 'rath@gmail.com', '2', NULL, '$2y$10$jLhtfxfpkOtmwhN2MQDDOeetpntgdO50SUwex5uf1pSs9c9P072uu', NULL, '2020-09-20 09:02:03', '2020-09-20 09:02:03'),
 (5, 'STD0001', 'sudeerasahan1@gmail.com', '2', NULL, '$2y$10$ceCYGGSsJeHnPbO0yWBcsuLt/Ct/WHvT4jvgKT/WuuPz6GFPR1bIy', NULL, '2020-09-20 09:20:03', '2020-09-20 09:20:03'),
 (6, 'STD0001', 'sudeerasahanstd@gmail.com', '3', NULL, '$2y$10$jLhtfxfpkOtmwhN2MQDDOeetpntgdO50SUwex5uf1pSs9c9P072uu', NULL, '2020-09-20 09:23:35', '2020-09-20 09:23:35'),
 (7, 'STD0002', 'ash@gmail.com', '3', NULL, '$2y$10$mnFMM5W9FU3/bbjPK.ft8OEUJkCGj1k3qU8ZKbj9Rj410YGFJeqIS', NULL, '2020-09-29 12:22:58', '2020-09-29 12:22:58'),
 (8, 'STD0002', 'asankad@gmail.com', '3', NULL, '$2y$10$kKgtFyqVyqyj6HcrkUY9r.3uZOiEMw3k0FBmakuygYbiMZI9bNWoy', NULL, '2020-09-29 12:47:34', '2020-09-29 12:47:34'),
-(9, 'STD0004', 'lapa@gmail.com', '3', NULL, '$2y$10$BisVYWkc6Vjax00hK.5jCemNBHNeOKfds859ROmUM/8wfbBe0MmiK', NULL, '2020-10-01 02:33:55', '2020-10-01 02:33:55');
+(9, 'STD0004', 'lapa@gmail.com', '3', NULL, '$2y$10$BisVYWkc6Vjax00hK.5jCemNBHNeOKfds859ROmUM/8wfbBe0MmiK', NULL, '2020-10-01 02:33:55', '2020-10-01 02:33:55'),
+(10, 'STD0005', 'sanjeewa@gmail.com', '3', NULL, '$2y$10$oGrnu.475PVWc28pvJv5MO4kzEA0N.hElHW0l467Sz8OKvTLZPgqK', NULL, '2020-10-05 19:36:18', '2020-10-05 19:36:18');
 
 --
 -- Indexes for dumped tables
@@ -400,13 +371,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `class_payments`
 --
 ALTER TABLE `class_payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `class_students`
 --
 ALTER TABLE `class_students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -418,7 +389,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `institute_classes`
 --
 ALTER TABLE `institute_classes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -430,7 +401,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -448,7 +419,7 @@ ALTER TABLE `role_user`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `teachers`
@@ -460,7 +431,7 @@ ALTER TABLE `teachers`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

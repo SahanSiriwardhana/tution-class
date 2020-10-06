@@ -54,10 +54,10 @@
                     <div class=" col-sm-3">
                         <label for="email">Student Name:</label>
                         <select class="selectpicker" required data-live-search="true" name="studentName" id="studentName">
-                            <option data-tokens="0">Select student name</option>
-                            @foreach ($students as $item)
+                            
+                            {{-- @foreach ($students as $item)
                                 <option value="{{$item->id}}" data-tokens="{{$item->id}}">{{ $item->genID }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
 
@@ -223,10 +223,12 @@
                     data : {classValue : classValue, _token:_token},
                     dataType: 'JSON',
                     success :function (data) {
-                        $("#classNameCard").html(data.class_name);
-                        $("#fee").html('Rs '+data.fee+'.00');
-                        $("#cashVal").val('Rs '+data.fee+'.00');
-                        
+                        $("#classNameCard").html(data['class'].class_name);
+                        $("#fee").html('Rs '+data['class'].fee+'.00');
+                        $("#cashVal").val('Rs '+data['class'].fee+'.00');
+                        $("#studentName").html(data['student']);
+                        $("#studentName").selectpicker("refresh");
+
                     }
                })
            }

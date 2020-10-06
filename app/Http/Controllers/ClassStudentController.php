@@ -32,11 +32,27 @@ class ClassStudentController extends Controller
         if($request->get('classValue')){
             $q = $request->get('classValue');
             
-            $data = DB::table('institute_classes')->where('id','=',$q)->get();
-            //dd($data);
-            $output = '<ul class="dropdown-menu" style="display:block;position:relative">';
-            //dd($data[0]);
-            echo json_encode($data[0]);
+            $dataClass = DB::table('institute_classes')->where('id','=',$q)->get();
+
+            $dataStudent = DB::table('class_students')
+            ->join('students','class_students.student_id','=','students.id')
+            ->where('class_id','=',$q)
+            ->select('students.id','students.genID')
+            ->get();
+
+            $data = array();
+ 
+
+            $output ='<option data-tokens="0" selected>Select student name</option>';
+            foreach($dataStudent as $item)
+            {
+              $output .=  '<option value="'.$item->id.'" data-tokens="'.$item->id.'">'. $item->genID .'</option>';
+            }
+
+            $data['class'] = $dataClass[0];
+            $data['student'] = $output;
+
+            echo json_encode($data);
         }
     }
 
